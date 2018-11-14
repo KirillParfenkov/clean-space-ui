@@ -1,0 +1,19 @@
+@import '../../../styles/colors.module.css';
+
+.Header {
+    color: var(--main-text-color);
+    padding-left: var(--main-content-padding);
+    padding-right: var(--main-content-padding);
+}
+
+.Header__navigation {
+    display: flex;
+    justify-content: space-between;
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.Header__navigationItem {
+
+}
