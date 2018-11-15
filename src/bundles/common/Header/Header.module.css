@@ -1,6 +1,11 @@
 @import '../../../styles/colors.module.css';
+@import '../../../styles/sizes.module.css';
 
 .Header {
+    z-index: 200;
+    width: 100%;
+    box-sizing: border-box;
+
     color: var(--main-text-color);
     padding-left: var(--main-content-padding);
     padding-right: var(--main-content-padding);
@@ -9,9 +14,9 @@
 .Header__navigation {
     display: flex;
     justify-content: space-between;
-
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    align-items: center;
+    align-content: center;
+    height: 150px;
 }
 
 .Header__navigationItem {

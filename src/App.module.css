@@ -1,5 +1,10 @@
 @import './styles/colors.module.css';
+@import './bundles/common/Header/Header.module.css';
 
 .App {
+    height: 100%;
+}
 
+.App__header {
+    position: absolute;
 }

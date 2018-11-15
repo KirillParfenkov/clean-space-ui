@@ -1,13 +1,14 @@
 import React from 'react';
+import classNames from 'classnames';
 import NavigationItem from './__navigationItem';
 import styles from './Header.module.css';
 
-function Header() {
+function Header({ className }) {
     return (
-        <header className={styles.Header}>
+        <header className={classNames(styles.Header, className)}>
             <nav className={styles.Header__navigation}>
                 <NavigationItem>CLEAN SPACE</NavigationItem>
-                <NavigationItem>menu</NavigationItem>
+                <NavigationItem>Menu</NavigationItem>
             </nav>
         </header>
     )

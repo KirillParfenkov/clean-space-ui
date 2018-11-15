@@ -1,5 +1,6 @@
 :root {
-    --main-text-color: red;
+    --main-text-color: #fff;
 
-    --main-content-padding: 6rem;
+    --dialog-bg-color: #111;
+    --dialog-text-color: #fff;
 }
