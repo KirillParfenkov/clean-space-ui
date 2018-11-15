@@ -11,3 +11,7 @@
     background-color: var(--dialog-bg-color);
     color: var(--dialog-text-color);
 }
+
+.Dialog_opened {
+    color: red;
+}

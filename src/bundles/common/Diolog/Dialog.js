@@ -1,9 +1,10 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './Dialag.module.css';
 
-function Dialog() {
+function Dialog({ opened }) {
     return (
-        <div className={styles.Dialog}>
+        <div className={classNames(styles.Dialog, { [styles.Dialog_opened]: opened})}>
             <ul>
                 <li>Booking</li>
                 <li>Available Services</li>
