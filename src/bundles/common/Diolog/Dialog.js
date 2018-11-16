@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 import styles from './Dialag.module.css';
+import DialogContext from '../DialogContext';
 
-function Dialog({ opened }) {
+function Dialog({ className }) {
+
+    const {
+        dialog,
+        opened,
+        component,
+    } = useContext(DialogContext);
+
     return (
-        <div className={classNames(styles.Dialog, { [styles.Dialog_opened]: opened})}>
-            <ul>
-                <li>Booking</li>
-                <li>Available Services</li>
-                <li>Registration</li>
-                <li>Login</li>
-            </ul>
+        <div className={classNames(styles.Dialog, className, { [styles.Dialog_opened]: opened})}>
+            {
+                component
+            }
         </div>
     );
 }

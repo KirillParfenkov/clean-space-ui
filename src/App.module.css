@@ -8,3 +8,7 @@
 .App__header {
     position: absolute;
 }
+
+.App__dialog {
+    position: absolute;
+}

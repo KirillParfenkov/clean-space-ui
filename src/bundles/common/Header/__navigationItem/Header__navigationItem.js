@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Header__navigationItem({ children }) {
+function Header__navigationItem({ children, onClick }) {
     return (
         <div>
             {children}
