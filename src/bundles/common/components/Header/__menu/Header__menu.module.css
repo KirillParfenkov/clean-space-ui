@@ -1,0 +1,6 @@
+@import '../../../../../styles/sizes.module.css';
+
+.Header__menu {
+    cursor: pointer;
+    display: flex;
+}

@@ -1,7 +1,9 @@
 @import './styles/colors.module.css';
-@import './bundles/common/Header/Header.module.css';
+@import 'bundles/common/components/Header/Header.module.css';
 
 .App {
+    position: relative;
+    overflow: hidden;
     height: 100%;
 }
 

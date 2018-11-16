@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+/**
+ * Dialog Context allow access to dialog API.
+ *
+ */
 const DialogContext = React.createContext();
 
 export function DialogProvider({ children }) {

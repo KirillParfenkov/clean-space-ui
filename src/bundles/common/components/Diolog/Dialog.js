@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
 import styles from './Dialag.module.css';
-import DialogContext from '../DialogContext';
+import DialogContext from '../../contexts/DialogContext/index';
 
 function Dialog({ className }) {
 

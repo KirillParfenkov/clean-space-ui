@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styles from './App.module.css';
-import Header from './bundles/common/Header';
-import Dialog from './bundles/common/Diolog';
-import Content from './bundles/common/Content';
-import DialogContext, { DialogProvider } from './bundles/common/DialogContext';
+import Header from './bundles/common/components/Header';
+import Dialog from './bundles/common/components/Diolog';
+import Content from './bundles/common/components/Content';
+import { DialogProvider } from './bundles/common/contexts/DialogContext';
 
 
 
