@@ -1,0 +1,9 @@
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: node:10.11.0-alpine
+  commands:
+  - yarn
+  - yarn build
