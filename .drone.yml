@@ -10,7 +10,8 @@ steps:
 
 - name: publish
   image: plugins/docker
-  repo: kparf/clean-space-ui
-  auto_tag: true
-  auto_tag_suffix: linux-amd64
-  secrets: [ DOCKER_USER, DOCKER_PASSWORD ]
+  settings:
+    repo: kparf/clean-space-ui
+    auto_tag: true
+    auto_tag_suffix: linux-amd64
+    secrets: [ DOCKER_USER, DOCKER_PASSWORD ]
