@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import styles from './Header.module.css';
 import { Menu } from '.';

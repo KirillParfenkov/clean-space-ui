@@ -6,7 +6,6 @@ import DialogContext from '../../contexts/DialogContext/index';
 function Dialog({ className }) {
 
     const {
-        dialog,
         opened,
         component,
     } = useContext(DialogContext);

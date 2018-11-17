@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './App.module.css';
 import Header from './bundles/common/components/Header';
 import Dialog from './bundles/common/components/Diolog';
@@ -8,8 +8,6 @@ import { DialogProvider } from './bundles/common/contexts/DialogContext';
 
 
 function App() {
-
-    const [dialog, setDialog] = useState({ opened: false });
 
     return (
         <DialogProvider>
