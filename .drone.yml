@@ -4,7 +4,23 @@ name: default
 steps:
 - name: build
   image: node:10.11.0-alpine
+  volumes:
+  - name: build
+    path: ./build
   commands:
   - yarn
   - yarn build
-  - docker build
+
+- name: publish
+  image: plugins/docker
+  volumes:
+  - name: build
+    path: ./build
+  setting:
+    repo: kparf/clean-space-ui
+    secrets: [ DOCKER_USER, DOCKER_PASSWORD ]
+    auto_tag: true
+
+volumes:
+- name: build
+- temp: {}
