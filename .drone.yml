@@ -12,5 +12,6 @@ steps:
   image: plugins/docker
   setting:
     repo: kparf/clean-space-ui
-    secrets: [ DOCKER_USER, DOCKER_PASSWORD ]
     auto_tag: true
+    auto_tag_suffix: linux-amd64
+    secrets: [ DOCKER_USER, DOCKER_PASSWORD ]
