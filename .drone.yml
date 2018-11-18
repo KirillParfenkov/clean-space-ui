@@ -14,3 +14,14 @@ steps:
     repo: kparf/clean-space-ui
     auto_tag: true
     secrets: [ docker_username, docker_password ]
+
+
+kind: secret
+
+external_data:
+  username:
+    path: secrets/data/docker
+    name: username
+  password:
+    path: secrets/data/docker
+    name: password
