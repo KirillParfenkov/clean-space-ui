@@ -11,17 +11,7 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    repo: kparf/clean-space-ui
+    repo: hub.docker.com/r/kparf/clean-space-ui
+    registry: hub.docker.com/r
     auto_tag: true
     secrets: [ docker_username, docker_password ]
-
-
-kind: secret
-
-external_data:
-  username:
-    path: secrets/data/docker
-    name: username
-  password:
-    path: secrets/data/docker
-    name: password
