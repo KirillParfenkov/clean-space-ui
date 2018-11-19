@@ -16,9 +16,9 @@ steps:
     PASSWORD:
       from_secret: docker_password
   commands:
-  - echo $${PASSWORD}
-  - echo $${USERNAME}
-  - docker login -u $${USERNAME} -p $${PASSWORD}
+  - echo ${PASSWORD}
+  - echo ${USERNAME}
+  - docker login -u ${USERNAME} -p ${PASSWORD}
   - docker build -t kparf/clean-space-ui:latest -t kparf/clean-space-ui:$DRONE_BUILD_NUMBER .
   - docker push kparf/clean-space-ui:latest
   - docker push kparf/clean-space-ui:$DRONE_BUILD_NUMBER
