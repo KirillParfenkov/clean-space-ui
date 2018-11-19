@@ -1,24 +1,12 @@
-kind: pipeline
-name: default
+pipline:
+  build:
+    image: node:10.11.0-alpine
+    commands:
+      - yarn
+      - yarn build
 
-steps:
-- name: build
-  image: node:10.11.0-alpine
-  commands:
-  - yarn
-  - yarn build
-
-- name: publish
-  image: docker
-  environment:
-    USERNAME:
-      from_secret: docker_username
-    PASSWORD:
-      from_secret: docker_password
-  commands:
-  - echo ${PASSWORD}
-  - echo ${USERNAME}
-  - docker login -u ${USERNAME} -p ${PASSWORD}
-  - docker build -t kparf/clean-space-ui:latest -t kparf/clean-space-ui:$DRONE_BUILD_NUMBER .
-  - docker push kparf/clean-space-ui:latest
-  - docker push kparf/clean-space-ui:$DRONE_BUILD_NUMBER
+  publish:
+    image: plugins/docker
+    repo: kparf/clean-space-ui
+    auto_tag: true
+    secrets: [ docker_username, docker_password ]
