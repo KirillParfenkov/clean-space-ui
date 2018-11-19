@@ -10,5 +10,4 @@ pipeline:
     commands:
     - echo $DOCKER_USERNAME
     - echo $DOCKER_PASSWORD
-    - echo $TEST
     secrets: [ docker_username, docker_password, test ]
