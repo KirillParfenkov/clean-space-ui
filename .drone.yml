@@ -5,9 +5,9 @@ pipeline:
       - yarn
       - yarn build
 
-  publish:
+  docker:
     image: docker
-    secrets: [ docker_username, docker_password ]
     commands:
-      - echo $DOCKER_USERNAME
-      - echo ${docker_password}
+    - echo $DOCKER_USERNAME
+    - echo $DOCKER_PASSWORD
+    secrets: [ docker_username, docker_password ]
