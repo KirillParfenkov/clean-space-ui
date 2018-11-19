@@ -6,7 +6,8 @@ pipeline:
       - yarn build
 
   publish:
-    image: plugins/docker
+    image: docker
     secrets: [ docker_username, docker_password ]
-    repo: kparf/clean-space-ui
-    tags: latest
+    commands:
+      - echo ${DOCKER_USERNAME}
+      - echo ${DOCKER_PASSWORD}
