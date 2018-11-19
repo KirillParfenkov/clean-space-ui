@@ -9,9 +9,14 @@ steps:
   - yarn build
 
 - name: publish
-  image: plugins/docker
-  settings:
-    repo: hub.docker.com/r/kparf/clean-space-ui
-    registry: hub.docker.com/r
-    auto_tag: true
-    secrets: [ docker_username, docker_password ]
+  image: docker
+  environment:
+    USERNAME:
+      from_secret: docker_username
+    PASSWORD:
+      from_secret: docker_password
+  commands:
+  - docker login -u $USERNAME -p $PASSWORD
+  - docker build -t kparf/clean-space-ui:latest -t kparf/clean-space-ui:$DRONE_BUILD_NUMBER .
+  - docker push kparf/clean-space-ui:latest
+  - docker push kparf/clean-space-ui:$DRONE_BUILD_NUMBER
