@@ -7,6 +7,6 @@ pipeline:
 
   publish:
     image: plugins/docker
-    repo: kparf/clean-space-ui
-    auto_tag: true
     secrets: [ docker_username, docker_password ]
+    repo: kparf/clean-space-ui
+    tags: latest
