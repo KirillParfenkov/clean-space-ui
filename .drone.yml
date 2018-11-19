@@ -9,5 +9,5 @@ pipeline:
     image: docker
     secrets: [ docker_username, docker_password ]
     commands:
-      - echo ${DOCKER_USERNAME}
-      - echo ${DOCKER_PASSWORD}
+      - echo $DOCKER_USERNAME
+      - echo ${docker_password}
