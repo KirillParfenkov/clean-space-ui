@@ -7,10 +7,13 @@ import { MenuDialog } from '..';
 function Header__menu({ children, onClick }) {
 
     const { dialog, opened } = useContext(DialogContext);
+    const selectHandler = () => {
+        dialog(false);
+    };
 
     const openHandler = () => {
         if (!opened) {
-            dialog(true, <MenuDialog/>);
+            dialog(true, <MenuDialog onSelect={selectHandler}/>);
         }
     };
 
