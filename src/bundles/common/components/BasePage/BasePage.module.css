@@ -1,0 +1,8 @@
+@import '../../../../styles/sizes.module.css';
+
+.BasePage {
+    --header-shift: 150px;
+    padding-top: var(--header-shift);
+    padding-left: var(--main-content-padding);
+    padding-right: var(--main-content-padding);
+}
