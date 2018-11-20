@@ -6,11 +6,11 @@ import {
     Company
 } from '.';
 
-function RegistrationSwitcherPage() {
+function RegistrationSwitcherPage({match}) {
     return (
         <BasePage className={styles.RegistrationSwitcherPage}>
-            <Client className={styles.RegistrationSwitcherPage__client}/>
-            <Company className={styles.RegistrationSwitcherPage__company}/>
+            <Client className={styles.RegistrationSwitcherPage__client} to={`${match.url}/client`}/>
+            <Company className={styles.RegistrationSwitcherPage__company} to={`${match.url}/company`}/>
         </BasePage>
     )
 }

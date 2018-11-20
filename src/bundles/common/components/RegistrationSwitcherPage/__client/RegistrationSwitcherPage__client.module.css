@@ -1,0 +1,16 @@
+.RegistrationSwitcherPage__client {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.RegistrationSwitcherPage__client img {
+    width: 300px;
+}
+
+.RegistrationSwitcherPage__client a {
+    padding-top: 20px;
+    font-size: 2rem;
+}

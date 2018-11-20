@@ -1,0 +1,15 @@
+.RegistrationSwitcherPage__company {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.RegistrationSwitcherPage__company img {
+    width: 300px;
+}
+
+.RegistrationSwitcherPage__company a {
+    padding-top: 20px;
+    font-size: 2rem;
+}
