@@ -1,3 +1,15 @@
 .RegistrationSwitcherPage {
+    display: grid;
+    grid-auto-columns: 1fr 10px 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "client . company";
+}
 
+.RegistrationSwitcherPage__client {
+    grid-area: client;
+}
+
+.RegistrationSwitcherPage__company {
+    grid-area: company;
 }
