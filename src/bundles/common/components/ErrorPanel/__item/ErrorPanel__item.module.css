@@ -1,0 +1,6 @@
+@import "../../../../../styles/colors.module.css";
+
+.ErrorPanel__item {
+    padding: 10px;
+    color: var(--error-color);
+}

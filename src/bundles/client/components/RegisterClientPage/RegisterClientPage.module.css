@@ -16,8 +16,14 @@
 
 .RegisterClientPage__form input {
     margin-left: 10px;
+    width: 300px;
 }
 
 .RegisterClientPage__form button[type="submit"] {
     margin-top: 10px;
+}
+
+.RegisterClientPage__errorPanel {
+    min-width: 100%;
+    text-align: center;
 }

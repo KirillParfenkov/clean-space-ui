@@ -1,46 +1,51 @@
 import React from 'react';
-import styles from './RegisterClientPage.module.css';
 import BasePage from '../../../common/components/BasePage';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import Button from "../../../common/components/Button/Button";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import Button from '../../../common/components/Button';
+import ErrorPanel from '../../../common/components/ErrorPanel';
+
+import styles from './RegisterClientPage.module.css';
+
+const RegisterSchema = Yup.object().shape({
+    name: Yup.string()
+        .required('Name Required'),
+    email: Yup.string()
+        .email('Invalid email')
+        .required('Email Required')
+});
+
+
+
 
 function RegisterClientPage() {
 
-    function handlerSubmit(values) {
-        console.log(JSON.stringify(values, null, 2));
+    function handlerSubmit(values, setFieldTouched) {
+        
     }
 
     return (
         <BasePage className={styles.RegisterClientPage}>
             <Formik
                 onSubmit={handlerSubmit}
-                initialValues={{
-                    email: 'test@test.com'
-                }}
-                validate={values => {
-                    let errors = {};
-                    return errors;
-                }}
-                render={({isSubmitting}) => (
-                    <Form className={styles.RegisterClientPage__form}>
+                validationSchema={RegisterSchema}
+                render={({errors, touched, isSubmitting}) => (
+                    <Form className={styles.RegisterClientPage__form} noValidate>
+                        <ErrorPanel errors={errors} className={styles.RegisterClientPage__errorPanel} />
                         <label> Name
-                            <Field type="name" name="name"/>
+                            <Field type="name" name="name" autoComplete="off"/>
                         </label>
                         <label>
                             Email
-                            <Field type="email" name="email"/>
-                        </label>
-                        <label>
-                            Phone
-                            <Field type="tel" name="phone"/>
+                            <Field type="email" name="email" autoComplete="off" pattern=""/>
                         </label>
                         <label>
                             Password
-                            <Field type="password" name="password"/>
+                            <Field type="password" name="password" autoComplete="off"/>
                         </label>
                         <label>
                             Confirm Password
-                            <Field type="password" name="confirm-password"/>
+                            <Field type="password" name="confirm-password" autoComplete="off"/>
                         </label>
                         <Button type="submit">Register</Button>
                     </Form>

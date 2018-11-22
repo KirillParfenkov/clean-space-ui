@@ -8,5 +8,5 @@ input {
     color: var(--main-text-color);
     border: 1px solid var(--main-text-color);
     background-color: var(--content-bg-color);
-    padding: 5px;
+    padding: 10px;
 }

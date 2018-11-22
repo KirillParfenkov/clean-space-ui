@@ -1,5 +1,6 @@
 :root {
     --main-text-color: #fff;
+    --error-color: red;
 
     --dialog-bg-color: #111;
     --dialog-text-color: #fff;
