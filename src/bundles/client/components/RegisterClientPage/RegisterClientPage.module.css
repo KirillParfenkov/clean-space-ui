@@ -1,13 +1,24 @@
+@import "../../../../styles/colors.module.css";
+
 .RegisterClientPage {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
+}
+
+.RegisterClientPage__wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .RegisterClientPage__form {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding: 15px;
+    border: 2px dashed var(--main-text-color);
 }
 
 .RegisterClientPage__form label {
@@ -24,6 +35,6 @@
 }
 
 .RegisterClientPage__errorPanel {
-    min-width: 100%;
     text-align: center;
+    margin-bottom: 10px;
 }
