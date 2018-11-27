@@ -1,9 +1,13 @@
 import React from 'react';
-import BasePage from '../../../common/components/BasePage';
 import * as Yup from 'yup';
+import { Form, Field } from 'react-final-form'
+import actions from '../../actions';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import BasePage from '../../../common/components/BasePage';
 import Button from '../../../common/components/Button';
 import ErrorPanel from '../../../common/components/ErrorPanel';
-import { Form, Field } from 'react-final-form'
 
 import styles from './RegisterClientPage.module.css';
 
@@ -32,10 +36,10 @@ const filterNotTouched = touched => errors =>
         }, {});
 
 
-function RegisterClientPage() {
+function RegisterClientPage({ dispatch }) {
 
-    function handlerSubmit(values) {
-        window.alert(JSON.stringify(values, 0, 2))
+    function handleSubmit(values) {
+        dispatch(actions.client.register(values));
     }
 
     async function validate(values) {
@@ -54,7 +58,7 @@ function RegisterClientPage() {
     return (
         <BasePage className={styles.RegisterClientPage}>
             <Form
-                onSubmit={handlerSubmit}
+                onSubmit={handleSubmit}
                 validate={validate}
                 render={({handleSubmit, form, submitting, pristine, values, errors, touched, visited}) => (
                     <div className={styles.RegisterClientPage__wrapper}>
@@ -84,4 +88,8 @@ function RegisterClientPage() {
     )
 }
 
-export default RegisterClientPage;
+const mapStateToProps = createStructuredSelector({
+
+});
+
+export default connect(mapStateToProps)(RegisterClientPage);
