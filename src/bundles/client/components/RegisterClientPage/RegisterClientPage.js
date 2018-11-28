@@ -5,6 +5,8 @@ import actions from '../../actions';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { selectRegisterClientFetchingState } from '../../selectors';
+
 import BasePage from '../../../common/components/BasePage';
 import Button from '../../../common/components/Button';
 import ErrorPanel from '../../../common/components/ErrorPanel';
@@ -36,7 +38,7 @@ const filterNotTouched = touched => errors =>
         }, {});
 
 
-function RegisterClientPage({ dispatch }) {
+function RegisterClientPage({ dispatch, fetching }) {
 
     function handleSubmit(values) {
         dispatch(actions.client.register(values));
@@ -79,7 +81,7 @@ function RegisterClientPage({ dispatch }) {
                                 Confirm Password
                                 <Field component="input" type="password" name="passwordConfirm" autoComplete="off"/>
                             </label>
-                            <Button type="submit">Register</Button>
+                            <Button type="submit" disable={fetching}>Register</Button>
                         </form>
                     </div>
                 )}
@@ -89,7 +91,7 @@ function RegisterClientPage({ dispatch }) {
 }
 
 const mapStateToProps = createStructuredSelector({
-
+    fetching: selectRegisterClientFetchingState
 });
 
 export default connect(mapStateToProps)(RegisterClientPage);

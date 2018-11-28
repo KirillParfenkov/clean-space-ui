@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import commonReducer from './bundles/common/reducer';
 import clientReducer from './bundles/client/reducer';
 
