@@ -41,7 +41,7 @@ const filterNotTouched = touched => errors =>
 function RegisterClientPage({ dispatch, fetching }) {
 
     function handleSubmit(values) {
-        dispatch(actions.client.register(values));
+        dispatch(actions.client.registerRequest(values));
     }
 
     async function validate(values) {
