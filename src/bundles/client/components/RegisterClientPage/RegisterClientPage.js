@@ -5,7 +5,10 @@ import actions from '../../actions';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectRegisterClientFetchingState } from '../../selectors';
+import {
+    selectRegisterClientFetchingState,
+    selectRegisterClientError
+} from '../../selectors';
 
 import BasePage from '../../../common/components/BasePage';
 import Button from '../../../common/components/Button';
@@ -27,6 +30,19 @@ const RegisterSchema = Yup.object().shape({
         .oneOf([Yup.ref('password')], 'Passwords do not match')
 });
 
+const mapErrorMessage = (error) => {
+    if (error) {
+        if (error.name === 'UserServiceEmailRegisteredError') {
+            return {
+                userServiceEmailRegisteredError: 'This email already exists',
+            };
+        }
+        return {
+            unknown: 'Unknown error',
+        };
+    }
+};
+
 const filterNotTouched = touched => errors =>
     Object.keys(touched)
         .filter(key => touched[key])
@@ -38,7 +54,7 @@ const filterNotTouched = touched => errors =>
         }, {});
 
 
-function RegisterClientPage({ dispatch, fetching }) {
+function RegisterClientPage({ dispatch, fetching, serverError }) {
 
     function handleSubmit(values) {
         dispatch(actions.client.registerRequest(values));
@@ -64,6 +80,7 @@ function RegisterClientPage({ dispatch, fetching }) {
                 validate={validate}
                 render={({handleSubmit, form, submitting, pristine, values, errors, touched, visited}) => (
                     <div className={styles.RegisterClientPage__wrapper}>
+                        <ErrorPanel className={styles.RegisterClientPage__errorPanel} errors={mapErrorMessage(serverError)}/>
                         <ErrorPanel className={styles.RegisterClientPage__errorPanel} errors={filterNotTouched(touched)(errors)}/>
                         <form onSubmit={handleSubmit} noValidate  className={styles.RegisterClientPage__form}>
                             <label> Name
@@ -81,7 +98,7 @@ function RegisterClientPage({ dispatch, fetching }) {
                                 Confirm Password
                                 <Field component="input" type="password" name="passwordConfirm" autoComplete="off"/>
                             </label>
-                            <Button type="submit" disable={fetching}>Register</Button>
+                            <Button type="submit" disable={`${fetching}`}>Register</Button>
                         </form>
                     </div>
                 )}
@@ -91,7 +108,8 @@ function RegisterClientPage({ dispatch, fetching }) {
 }
 
 const mapStateToProps = createStructuredSelector({
-    fetching: selectRegisterClientFetchingState
+    fetching: selectRegisterClientFetchingState,
+    serverError: selectRegisterClientError,
 });
 
 export default connect(mapStateToProps)(RegisterClientPage);

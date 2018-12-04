@@ -9,7 +9,21 @@ const defaultValue = Map({
 });
 
 export default handleActions({
-    [actions.client.register] : (state, action) => {
-        return state.setIn(['register', 'fetching'], true);
+    [actions.client.registerRequest] : (state, action) => {
+        return state.withMutations((state) => {
+            state.setIn(['register', 'fetching'], true);
+            state.delete('error');
+        });
+    },
+    [actions.client.register] : {
+        next(state, action) {
+            return state.setIn(['register', 'fetching'], false);
+        },
+        throw(state, action) {
+            return state.withMutations((state) => {
+                state.setIn(['register', 'error'], action.payload);
+                state.setIn(['register', 'fetching'], false);
+            });
+        }
     }
 }, defaultValue);
