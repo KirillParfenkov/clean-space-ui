@@ -6,6 +6,7 @@ import RegisterClientPage from '../../../client/components/RegisterClientPage';
 import ServicesPage from '../ServicesPage';
 
 import styles from './Content.module.css';
+import LoginPage from '../../pages/LoginPage';
 
 function Content() {
     return (
@@ -15,6 +16,7 @@ function Content() {
                 <Route path="/registration/client" component={RegisterClientPage}/>
                 <Route path="/registration" component={RegistrationSwitcherPage}/>
                 <Route path="/services" component={ServicesPage}/>
+                <Route path="/login" component={LoginPage}/>
             </Switch>
         </main>
     )

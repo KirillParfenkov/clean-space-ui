@@ -1,5 +1,6 @@
 import { Map } from 'immutable';
 import { handleActions } from 'redux-actions';
+
 import actions from './actions';
 
 const defaultValue = Map({
@@ -12,7 +13,7 @@ export default handleActions({
     [actions.client.registerRequest] : (state, action) => {
         return state.withMutations((state) => {
             state.setIn(['register', 'fetching'], true);
-            state.delete('error');
+            state.deleteIn(['register', 'error']);
         });
     },
     [actions.client.register] : {

@@ -1,7 +1,6 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { Form, Field } from 'react-final-form'
-import actions from '../../actions';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -9,6 +8,7 @@ import {
     selectRegisterClientFetchingState,
     selectRegisterClientError
 } from '../../selectors';
+import actions from '../../actions';
 
 import BasePage from '../../../common/components/BasePage';
 import Button from '../../../common/components/Button';
@@ -85,11 +85,11 @@ function RegisterClientPage({ dispatch, history, fetching, serverError }) {
             <Form
                 onSubmit={handleSubmit}
                 validate={validate}
-                render={({handleSubmit, form, submitting, pristine, values, errors, touched, visited}) => (
+                render={({handleSubmit, form, values, errors, touched}) => (
                     <div className={styles.RegisterClientPage__wrapper}>
                         <ErrorPanel className={styles.RegisterClientPage__errorPanel} errors={mapErrorMessage(serverError)}/>
                         <ErrorPanel className={styles.RegisterClientPage__errorPanel} errors={filterNotTouched(touched)(errors)}/>
-                        <form onSubmit={handleSubmit} noValidate  className={styles.RegisterClientPage__form}>
+                        <form onSubmit={handleSubmit} noValidate className={styles.RegisterClientPage__form}>
                             <label> Name
                                 <Field component="input" type="name" name="name" autoComplete="off"/>
                             </label>
