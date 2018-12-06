@@ -27,6 +27,6 @@ export default handleActions({
         }
     },
     [actions.client.clearRegisterForm] : (state, action) => {
-        return state.delete('error');
+        return state.deleteIn(['register', 'error']);
     }
 }, defaultValue);
