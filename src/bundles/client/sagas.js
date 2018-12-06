@@ -3,20 +3,26 @@ import { AppError } from '../../utils';
 import actions from './actions';
 import api from '../../api';
 
-export function* registerClient(action) {
-    const response = yield call(api.postClientRegister, action.payload);
-    if (response.ok || response.redirected) {
+export function* registerClient({ payload, meta: { callback }}) {
+    try {
+        const response = yield call(api.postClientRegister, payload);
+        if (response.ok || response.redirected) {
 
-        const user = yield call([response, 'json']);
-        yield put(actions.client.register(user));
-    } else {
+            const user = yield call([response, 'json']);
+            yield put(actions.client.register(user));
+            if (callback) callback();
 
-        const error = yield call([response, 'json']);
-        if (error.name) {
-            yield put(actions.client.register(AppError(error.name, error.message), response));
         } else {
-            yield put(actions.client.register(AppError('ApiError', 'can not register client'), response));
+            const error = yield call([response, 'json']);
+            if (error.name) {
+                yield put(actions.client.register(AppError(error.name, error.message), response));
+            } else {
+                yield put(actions.client.register(AppError('ApiError', 'can not register client'), response));
+            }
         }
+    } catch (e) {
+        console.log(e);
+        yield put(actions.client.register(e));
     }
 }
 

@@ -9,3 +9,8 @@
     background-color: transparent;
     padding: 5px;
 }
+
+.Button[disabled] {
+    cursor: initial;
+    --button-border-color: var(--button-border-disabled-color);
+}

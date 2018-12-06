@@ -25,5 +25,8 @@ export default handleActions({
                 state.setIn(['register', 'fetching'], false);
             });
         }
+    },
+    [actions.client.clearRegisterForm] : (state, action) => {
+        return state.delete('error');
     }
 }, defaultValue);

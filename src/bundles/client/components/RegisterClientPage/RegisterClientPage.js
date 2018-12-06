@@ -54,10 +54,17 @@ const filterNotTouched = touched => errors =>
         }, {});
 
 
-function RegisterClientPage({ dispatch, fetching, serverError }) {
+function RegisterClientPage({ dispatch, history, fetching, serverError }) {
+
+    function createCompletedHandler(history) {
+        return () => {
+            dispatch(actions.client.clearRegisterForm());
+            history.push('/');
+        }
+    }
 
     function handleSubmit(values) {
-        dispatch(actions.client.registerRequest(values));
+        dispatch(actions.client.registerRequest(values, createCompletedHandler(history)));
     }
 
     async function validate(values) {
@@ -98,7 +105,7 @@ function RegisterClientPage({ dispatch, fetching, serverError }) {
                                 Confirm Password
                                 <Field component="input" type="password" name="passwordConfirm" autoComplete="off"/>
                             </label>
-                            <Button type="submit" disable={`${fetching}`}>Register</Button>
+                            <Button type="submit" disabled={fetching}>Register</Button>
                         </form>
                     </div>
                 )}

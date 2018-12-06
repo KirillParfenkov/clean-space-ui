@@ -9,4 +9,7 @@
 
     --button-text-color: #fff;
     --button-border-color: #fff;
+
+    --button-border-disabled-color: #969696;
+    --button-text-disabled-color: #969696;
 }
