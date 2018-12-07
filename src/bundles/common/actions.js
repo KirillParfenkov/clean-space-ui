@@ -7,6 +7,8 @@ export default createActions({
             (payload, callback) => ({ callback })
         ],
         LOGIN: payload => payload,
+        UPDATE_LOGIN: payload => payload,
+        RECOVER_LOGIN: payload => payload,
         CLEAR_LOGIN_FORM: payload => payload,
     }
 })

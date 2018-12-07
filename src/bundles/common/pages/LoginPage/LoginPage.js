@@ -25,10 +25,17 @@ const LoginSchema = Yup.object().shape({
         .required('Password Required'),
 });
 
-function LoginPage({dispatch}) {
+function LoginPage({dispatch, history}) {
+
+    function createCompletedHandler(history) {
+        return () => {
+            dispatch(actions.common.clearLoginForm());
+            history.push('/');
+        }
+    }
 
     function handleSubmit(values) {
-        dispatch(actions.common.loginRequest(values));
+        dispatch(actions.common.loginRequest(values, createCompletedHandler(history)));
     }
 
     return (
@@ -52,4 +59,4 @@ const mapStateToProps = createStructuredSelector({
     fetching: selectLoginFetchingState,
     serverError: selectLoginError,
 });
-export default connect()(LoginPage);
+export default connect(mapStateToProps)(LoginPage);

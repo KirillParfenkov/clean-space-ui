@@ -8,6 +8,14 @@ export const postClientRegister = (client) => fetch(`${HOST}/users`, {
     body: JSON.stringify(client),
 });
 
+export const postLoginRegister = ({email, password}) => fetch(`${HOST}/auth`, {
+    method: 'POST',
+    headers: {
+        'Authorization': `Basic ${btoa(`${email}:${password}`)}`,
+    },
+});
+
 export default {
-    postClientRegister
+    postClientRegister,
+    postLoginRegister,
 }
