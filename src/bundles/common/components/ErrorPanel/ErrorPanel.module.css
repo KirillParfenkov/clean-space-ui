@@ -1,4 +1,4 @@
-@import "../../../../styles/colors.module.css";
+@import '~styles/colors.module.css';
 
 .ErrorPanel {
     display: flex;
@@ -7,4 +7,8 @@
     margin: 0;
     padding: 0;
     border: 2px dashed var(--error-color);
+}
+
+.ErrorPanel--centered {
+    text-align: center;
 }

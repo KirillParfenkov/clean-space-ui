@@ -1,0 +1,12 @@
+@import '~styles/colors.module.css';
+
+.RegisterCompanyPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.RegisterCompanyPage__errorPanel {
+    margin-bottom: 10px;
+}

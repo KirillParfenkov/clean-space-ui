@@ -3,16 +3,18 @@ import * as Yup from 'yup';
 import { Form, Field } from 'react-final-form'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import classNames from 'classnames';
 
 import {
     selectRegisterClientFetchingState,
     selectRegisterClientError
-} from '../../selectors';
-import actions from '../../actions';
+} from 'bundles/client/selectors';
+import actions from 'bundles/client/actions';
 
-import BasePage from '../../../common/components/BasePage';
-import Button from '../../../common/components/Button';
-import ErrorPanel from '../../../common/components/ErrorPanel';
+import BasePage from 'bundles/common/components/BasePage';
+import Button from 'bundles/common/components/Button';
+import BaseForm from 'bundles/common/components/BaseForm';
+import ErrorPanel, { styles as errorPanelStyles } from 'bundles/common/components/ErrorPanel';
 
 import styles from './RegisterClientPage.module.css';
 
@@ -30,7 +32,7 @@ const RegisterSchema = Yup.object().shape({
         .oneOf([Yup.ref('password')], 'Passwords do not match')
 });
 
-const mapErrorMessage = (error) => {
+const mapServerErrorMessage = (error) => {
     if (error) {
         if (error.name === 'UserServiceEmailRegisteredError') {
             return {
@@ -42,17 +44,6 @@ const mapErrorMessage = (error) => {
         };
     }
 };
-
-const filterNotTouched = touched => errors =>
-    Object.keys(touched)
-        .filter(key => touched[key])
-        .reduce((result, key) =>  {
-            if (errors[key]) {
-                result[key] = errors[key];
-            }
-            return result;
-        }, {});
-
 
 function RegisterClientPage({ dispatch, history, fetching, serverError }) {
 
@@ -67,49 +58,32 @@ function RegisterClientPage({ dispatch, history, fetching, serverError }) {
         dispatch(actions.client.registerRequest(values, createCompletedHandler(history)));
     }
 
-    async function validate(values) {
-        try {
-            await RegisterSchema.validate(values, {
-                abortEarly: false,
-            });
-        } catch({inner}) {
-            return inner.reduce((errors, val) => {
-                errors[val.path] = val.errors;
-                return  errors;
-            }, {});
-        }
-    }
-
     return (
         <BasePage className={styles.RegisterClientPage}>
-            <Form
-                onSubmit={handleSubmit}
-                validate={validate}
-                render={({handleSubmit, form, values, errors, touched}) => (
-                    <div className={styles.RegisterClientPage__wrapper}>
-                        <ErrorPanel className={styles.RegisterClientPage__errorPanel} errors={mapErrorMessage(serverError)}/>
-                        <ErrorPanel className={styles.RegisterClientPage__errorPanel} errors={filterNotTouched(touched)(errors)}/>
-                        <form onSubmit={handleSubmit} noValidate className={styles.RegisterClientPage__form}>
-                            <label> Name
-                                <Field component="input" type="name" name="name" autoComplete="off"/>
-                            </label>
-                            <label>
-                                Email
-                                <Field component="input" type="email" name="email" autoComplete="off" pattern=""/>
-                            </label>
-                            <label>
-                                Password
-                                <Field component="input" type="password" name="password" autoComplete="off"/>
-                            </label>
-                            <label>
-                                Confirm Password
-                                <Field component="input" type="password" name="passwordConfirm" autoComplete="off"/>
-                            </label>
-                            <Button type="submit" disabled={fetching}>Register</Button>
-                        </form>
-                    </div>
-                )}
-            />
+            <BaseForm handleSubmit={handleSubmit} schema={RegisterSchema}
+                      panel={
+                          <ErrorPanel
+                              className={classNames(styles.RegisterClientPage__errorPanel, errorPanelStyles['ErrorPanel--centered'])}
+                              errors={mapServerErrorMessage(serverError)}
+                          />
+                      }>
+                <label> Name
+                    <Field component="input" type="name" name="name" autoComplete="off"/>
+                </label>
+                <label>
+                    Email
+                    <Field component="input" type="email" name="email" autoComplete="off" pattern=""/>
+                </label>
+                <label>
+                    Password
+                    <Field component="input" type="password" name="password" autoComplete="off"/>
+                </label>
+                <label>
+                    Confirm Password
+                    <Field component="input" type="password" name="passwordConfirm" autoComplete="off"/>
+                </label>
+                <Button type="submit" disabled={fetching}>Register</Button>
+            </BaseForm>
         </BasePage>
     )
 }

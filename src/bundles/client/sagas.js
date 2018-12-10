@@ -1,12 +1,12 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 
-import { AppError } from '../../utils';
+import { AppError } from 'utils';
 import actions from './actions';
-import api from '../../api';
+import api from 'api';
 
 function* registerClient({ payload, meta: { callback }}) {
     try {
-        const response = yield call(api.postClientRegister, payload);
+        const response = yield call(api.postUserRegister, payload);
         if (response.ok || response.redirected) {
             const user = yield call([response, 'json']);
             yield put(actions.client.register(user));

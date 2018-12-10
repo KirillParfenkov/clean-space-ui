@@ -10,9 +10,9 @@ import {
 } from '../../selectors';
 import actions from '../../actions';
 
-import BasePage from '../../components/BasePage';
-import Button from '../../components/Button';
-import BaseForm from '../../components/BaseForm';
+import BasePage from 'bundles/common/components/BasePage';
+import Button from 'bundles/common/components/Button';
+import BaseForm from 'bundles/common/components/BaseForm';
 
 import styles from './LoginPage.module.css';
 
@@ -25,7 +25,7 @@ const LoginSchema = Yup.object().shape({
         .required('Password Required'),
 });
 
-function LoginPage({dispatch, history}) {
+function LoginPage({dispatch, history, fetching}) {
 
     function createCompletedHandler(history) {
         return () => {
@@ -49,7 +49,7 @@ function LoginPage({dispatch, history}) {
                     Password
                     <Field component="input" type="password" name="password" autoComplete="off"/>
                 </label>
-                <Button type="submit" disabled={false}>Submit</Button>
+                <Button type="submit" disabled={fetching}>Submit</Button>
             </BaseForm>
         </BasePage>
     )

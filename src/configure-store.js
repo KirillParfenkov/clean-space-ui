@@ -3,8 +3,9 @@ import { fromJS } from 'immutable';
 import createSagaMiddleware from 'redux-saga'
 import { createLogger } from 'redux-logger';
 import createReducer from './create-reducer';
-import watchClientEffects from './bundles/client/sagas';
-import watchCommonEffects from './bundles/common/sagas';
+import watchClientEffects from 'bundles/client/sagas';
+import watchCommonEffects from 'bundles/common/sagas';
+import watchServiceEfects from 'bundles/service/sagas';
 
 const loggerMiddleware = createLogger();
 const sagaMiddleware = createSagaMiddleware();
@@ -24,6 +25,7 @@ export default function configureStore(preLoadedState = fromJS({})) {
 
     sagaMiddleware.run(watchClientEffects);
     sagaMiddleware.run(watchCommonEffects);
+    sagaMiddleware.run(watchServiceEfects);
 
     return store;
 };

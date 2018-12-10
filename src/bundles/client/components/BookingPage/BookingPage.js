@@ -1,5 +1,5 @@
 import React from 'react';
-import BasePage from '../../../common/components/BasePage';
+import BasePage from 'bundles/common/components/BasePage';
 import styles from './BookingPage.module.css';
 
 
