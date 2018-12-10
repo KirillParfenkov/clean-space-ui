@@ -1,4 +1,4 @@
-export const HOST = "http://localhost:9000";
+export const HOST = process.env.REACT_APP_RESOURCE_HOST ? process.env.REACT_APP_RESOURCE_HOST : "http://localhost:9000";
 
 export const postClientRegister = (client) => fetch(`${HOST}/users`, {
     method: 'POST',
